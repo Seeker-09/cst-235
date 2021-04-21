@@ -1,0 +1,56 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:h="http://java.sun.com/jsf/html">
+	  
+	  <h:head>
+	  	<h:outputStylesheet library = "css" name = "styles.css"></h:outputStylesheet>
+	  </h:head>
+	 
+	 <body>
+	 	<div class = "topmenu">
+	 		<h:form>
+	 			<h:commandButton action="#{formController.showEntryForm()}" value="Create a new Thing" />
+	 			<h:commandButton action="#{formController.showIndexForm()}" value="Show All" />
+	 		</h:form>
+	 	</div>
+	 	
+	 	<h2 class = "centeredheadline">These are a few of my favorite things</h2>
+	 
+		<h:dataTable value="#{formController.getAll()}" var = "thing">
+			<h:column>
+				<f:facet name="header">ID</f:facet>
+				<h:outputText value="#{thing.id}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Title</f:facet>
+				<h:outputText value="#{thing.thingTitle}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Description</f:facet>
+				<h:outputText value="#{thing.thingDescription}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Rating</f:facet>
+				<h:outputText value="#{thing.rating}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Delete</f:facet>
+					<h:form>
+						<h:commandButton action="#{formController.onDelete(thing)}" value="Delete" />
+					</h:form>
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Edit</f:facet>
+					<h:form>
+						<h:commandButton action="#{formController.onShowEdit(thing)}" value="Edit" />
+					</h:form>
+			</h:column>
+		</h:dataTable>
+	 </body>
+</html>
